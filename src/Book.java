@@ -1,55 +1,29 @@
 
+
 import java.util.Scanner;
 
 public class Book {
 
     private Scanner input;
     private String title;
-    private String author;
-    private int pageCount;
-    private final String[] statusList = new String[]{ "Unread", "Reading", "Read"};
-    private int status;
-    private int bookmark;
+    private Author author;
 
 
-    public Book(Book to_copy) {
-        this.title = to_copy.title;
-        this.author = to_copy.author;
-        this.pageCount = to_copy.pageCount;
-        this.status = to_copy.status;
-        this.bookmark = to_copy.bookmark;
+    public Book(Book book) {
+        this.title = new String(book.title);
+        author = new Author(book.author);
     }
 
-    public Book(String title, String author, int pageCount, int status, int bookmark) {
-        this.title = title;
-        this.author = author;
-        this.pageCount = pageCount;
-        this.status = status;
-        this.bookmark = bookmark;
-    }
-
-    public Book(String title, String author, int pageCount, int status) {
-        this(title, author, pageCount, status, 0);
-    }
-    public Book(String title, String author, int pageCount) {
-        this(title, author, pageCount, 0);
-    }
-    public Book(String title, String author){
-        this(title, author, -1);
-    }
-    public Book(String title) {
-        this(title, "Unknown");
-    }
-    public Book() {
-        this("Unknown");
+    //default constructor
+    public Book(){
+        this.title = "Unknown";
+        this.author = new Author();
     }
 
     public void display() {
         System.out.println("Title: " + this.title);
-        System.out.println("Author: " + this.author);
-        System.out.println("Pages: " + this.pageCount);
-        System.out.println("Status: " + this.statusList[status]);
-        System.out.println("Bookmark: " + this.bookmark);
+        System.out.print("Author: ");
+        this.author.display();
     }
 
     //Reads a book from the user and returns the book read in
@@ -60,33 +34,41 @@ public class Book {
         System.out.print("Enter Title: ");
         this.title = input.nextLine();
 
-        System.out.print("Enter Author: ");
-        this.author = input.nextLine();
-
-        System.out.print("Enter number of pages: ");
-        this.pageCount = input.nextInt();
-        input.nextLine();
-
-        System.out.print("Enter status (0-2)(0: Unread, 1: read ,2: reading): ");
-        this.status = input.nextInt();
-        input.nextLine();
-
-        System.out.print("Enter Bookmark page number: ");
-        this.bookmark = input.nextInt();
-        input.nextLine();
+        this.author.read(input);
+        this.capitalizeTitle();
 
         return this;
     }
 
-    //Lexicographically compares this books author and title with the arg books title and author
-    //Returns positive if arg is greater than this
-    //Returns negative if arg is less than this
-    //Returns 0 is same title and author
-    int compareTo (Book to_compare) {
-        String thisTitleAndAuthor = this.author + this.title;
-        String thatTitleAndAuthor = to_compare.author + to_compare.title;
-        return thisTitleAndAuthor.compareTo(thatTitleAndAuthor);
+    //Lexicographically compares this books author and title with the arg books title and author and title
+    //Returns 1 if this is greater than arg
+    //Returns -1 if this is less than arg
+    int compareTo (Book book) {
+        if(this.author.compareTo(book.author) >= 0)
+        {
+            //author doesnt already exist or we reached this authors section
+            //now compare the title
+            if(this.title.compareTo(book.title) > 0)
+                return 1;
+        }
+        return -1;
     }
+
+    private void capitalizeTitle() {
+
+        if (!title.equals(""))
+            title = title.substring(0, 1).toUpperCase() + title.substring(1);
+
+        
+        for(int i = 0; i < title.length() - 1; ++i) {
+            if(title.charAt(i) == 32) {
+                title =  title.substring(0, i + 1) +
+                         title.substring(i + 1, i + 2).toUpperCase() +
+                         title.substring(i + 2);
+            }
+        }
+    }
+
 
 
 }

@@ -17,19 +17,31 @@ public class Library {
         books = new ArrayList<Book>();
     }
 
+    //read book info from user into a new book
+    //Retrun reference to that new book.
+    public Book readBook() {
+        Book toAdd = new Book();
+        return toAdd.read();
+    }
+
 
     //Add book into library in alphabetical order
-    public void addBook(Book to_add) {
+    public void addBook(Book book) {
+
+        //if the library is empty add the first book
         if(books.size() == 0)
-            books.add(to_add);
+            books.add(book);
+        //lexogaphly compare bookToAdd author and title with each book
+        //when bookToAdd is greater than current book,inset after current book
         else {
             for (int i = 0; i < books.size(); ++i) {
-                if (to_add.compareTo(books.get(i)) < 0) {
-                    books.add(i, to_add);
+                if (book.compareTo(books.get(i)) < 0) {
+                    books.add(i, book);
                     return;
                 }
             }
-            books.add(to_add);
+            //bookToAdd is greater than any book ih the library, so append it to the list
+            books.add(book);
         }
     }
 
