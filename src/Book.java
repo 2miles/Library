@@ -1,40 +1,34 @@
 
+public class Book extends Util {
 
-import java.util.Scanner;
-
-public class Book {
-
-    private Scanner input;
     private String title;
     private Author author;
 
 
     public Book(Book book) {
-        this.title = new String(book.title);
+        title = new String(book.title);
         author = new Author(book.author);
     }
 
     //default constructor
     public Book(){
-        this.title = "Unknown";
-        this.author = new Author();
+        title = "Unknown";
+        author = new Author();
     }
 
     public void display() {
         System.out.println("Title: " + this.title);
         System.out.print("Author: ");
-        this.author.display();
+        author.display();
     }
 
     //Reads a book from the user and returns the book read in
     public Book read() {
 
-        input = new Scanner(System.in);
-
         System.out.print("Enter Title: ");
         this.title = input.nextLine();
 
-        this.author.read(input);
+        this.author.read();
         this.capitalizeTitle();
 
         return this;
@@ -59,6 +53,8 @@ public class Book {
         if (!title.equals(""))
             title = title.substring(0, 1).toUpperCase() + title.substring(1);
 
+        //need to exclude these words from capitalization
+        //to , of , a , an, as, and, is, are,
         
         for(int i = 0; i < title.length() - 1; ++i) {
             if(title.charAt(i) == 32) {

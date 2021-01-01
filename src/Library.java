@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Library {
+public class Library extends Util {
 
     private String name;     //Name for this library
     private String location;  //home address, computer
@@ -12,7 +12,6 @@ public class Library {
     public Library() {
 
         name = "Main Collection";
-        location = "69420 ne Fremont st";
         kindOfLibrary = "Physical";
         books = new ArrayList<Book>();
     }
@@ -50,13 +49,11 @@ public class Library {
 
         System.out.println();
         System.out.println("Name: " + name);
-        System.out.println("Location: " + location);
         System.out.println("Type: " + kindOfLibrary);
         System.out.println("---------------------------------");
         System.out.println("Books: ");
-        for (int i = 0; i < books.size(); ++i) {
-            System.out.println("book " + (i + 1));
-            books.get(i).display();
+        for (Book book : books) {
+            book.display();
             System.out.println();
         }
 

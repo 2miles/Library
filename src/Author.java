@@ -1,11 +1,9 @@
-import java.util.Scanner;
 
-public class Author {
+public class Author extends Util {
 
     private String firstName;
     private String middleName;
     private String lastName;
-    private Scanner input;
 
 
 
@@ -35,7 +33,7 @@ public class Author {
     }
 
 
-    public void read(Scanner input) {
+    public void read() {
 
         System.out.print("Enter authors first name, or initial: ");
         firstName = input.nextLine();
