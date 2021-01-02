@@ -6,13 +6,5 @@ public class LibraryProject {
 
         menu.mainMenu(library1);
 
-
-
-
-        //library1.addBook(library1.readBook());
-
-
-        //library1.displayAll();
-
     }
 }

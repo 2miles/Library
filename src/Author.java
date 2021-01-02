@@ -7,25 +7,31 @@ public class Author extends Util {
 
 
 
-    public Author() {
+    public Author()
+    {
         this("","", "");
     }
-    public Author(Author author) {
+
+    public Author(Author author)
+    {
         this(author.lastName, author.firstName ,author.middleName );
     }
 
-    public Author(String last, String first){
+    public Author(String last, String first)
+    {
         this(last,first, "");
     }
 
-    public Author(String last, String first, String middle) {
+    public Author(String last, String first, String middle)
+    {
         lastName = new String(last);
         firstName = new String(first);
         middleName = new String(middle);
     }
 
 
-    public void display() {
+    public void display()
+    {
         if(!middleName.equals(""))
             System.out.print(firstName + ' ' + middleName + ' ' + lastName);
         else
@@ -33,8 +39,8 @@ public class Author extends Util {
     }
 
 
-    public void read() {
-
+    public void read()
+    {
         System.out.print("Enter authors first name, or initial: ");
         firstName = input.nextLine();
         System.out.print("Enter authors middle name, or initial (press enter if none): ");
@@ -45,19 +51,17 @@ public class Author extends Util {
     }
 
 
-    public void capitalizeName() {
-        // capitalize first letter of each name
-        if(!lastName.equals(""))
-        lastName = lastName.substring(0, 1).toUpperCase() + lastName.substring(1);
-        if(!firstName.equals(""))
-            firstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1);
-        if(!middleName.equals(""))
-            middleName = middleName.substring(0, 1).toUpperCase() + middleName.substring(1);
+    // capitalize first letter of each name
+    public void capitalizeName()
+    {
+        lastName = toTitleCase(lastName);
+        middleName = toTitleCase(middleName);
+        firstName = toTitleCase(firstName);
     }
 
 
-
-    public int compareTo(Author author) {
+    public int compareTo(Author author)
+    {
         String thisLastNameFirst = lastName + firstName + middleName;
         String thatLastNameFirst = author.lastName + author.firstName + author.middleName;
         return thisLastNameFirst.compareTo(thatLastNameFirst);
