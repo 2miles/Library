@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Library extends Util {
+public class Library extends Util implements Serializable {
 
     private String name;     //Name for this library
     private String location;  //home address, computer

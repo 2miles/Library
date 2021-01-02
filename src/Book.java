@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Book extends Util {
+public class Book extends Util implements Serializable {
 
     private String title;
     private Author author;

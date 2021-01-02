@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Author extends Util {
+public class Author extends Util implements Serializable {
 
     private String firstName;
     private String middleName;
