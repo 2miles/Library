@@ -34,9 +34,9 @@ public class Author extends Util implements Serializable {
     public void display()
     {
         if(!middleName.equals(""))
-            System.out.print(firstName + ' ' + middleName + ' ' + lastName);
+            System.out.println(firstName + ' ' + middleName + ' ' + lastName);
         else
-            System.out.print(firstName + ' ' + lastName);
+            System.out.println(firstName + ' ' + lastName);
     }
 
 
